@@ -54,11 +54,14 @@ class Repartidor(Persona):
 class Producto:
     nombre: str
     precio: int
+    stock: int
 
     def __post_init__(self):
         texto_obligatorio(self.nombre, "Producto")
         if type(self.precio) is not int or self.precio <= 0:
             raise ReglaNegocioError("El precio debe ser un entero positivo en CLP")
+        if type(self.stock) is not int or self.stock <= 0: 
+            raise ReglaNegocioError("El stock debe ser un entero positivo")
 
 
 @dataclass(frozen=True)
@@ -103,7 +106,7 @@ class PagoBilletera(MedioPago):
     def __init__(self, saldo: int):
         if type(saldo) is not int or saldo < 0:
             raise ReglaNegocioError("Saldo inválido")
-        self._saldo = saldo
+        self.saldo = saldo
 
     @property
     def saldo(self) -> int:
