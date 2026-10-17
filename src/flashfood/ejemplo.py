@@ -27,6 +27,8 @@ def main():
     juanito = Repartidor("R001", "Juanito", "Motochorro")
     pedido.pagar(tarjeta)
     pedido.asignar(juanito)
+    pedido.iniciar_entrega()
+    pedido.entregar()
 
     print("Cliente: ", pedido.cliente.nombre)
     print("Repartidor: ", pedido.repartidor)
