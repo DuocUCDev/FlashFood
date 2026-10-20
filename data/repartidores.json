@@ -1,0 +1,12 @@
+[
+  {
+    "id": "rep-diego",
+    "nombre": "Diego Muñoz",
+    "vehiculo": "Bicicleta"
+  },
+  {
+    "id": "rep-marta",
+    "nombre": "Marta López",
+    "vehiculo": "Moto"
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "cli-camila",
+    "nombre": "Camila Soto",
+    "telefono": "+56911112222",
+    "direccion": "Av. Central 123",
+    "es_vip": false
+  },
+  {
+    "id": "cli-andres",
+    "nombre": "Andrés Rojas",
+    "telefono": "+56933334444",
+    "direccion": "Los Aromos 45",
+    "es_vip": true
+  },
+  {
+    "id": "cli-1f59ccc6",
+    "nombre": "Aimara Bormuth",
+    "telefono": "+5691234567",
+    "direccion": "Av. Siempre Viva 111",
+    "es_vip": true
+  }
+]

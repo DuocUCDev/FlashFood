@@ -5,3 +5,7 @@ __pycache__/
 build/
 dist/
 .pytest_cache/
+*.json.bak
+*.json.tmp
+.data.tmp/
+.data.bak/

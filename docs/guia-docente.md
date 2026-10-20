@@ -2,43 +2,27 @@
 
 ## Objetivo
 
-Modelar un proceso de negocio usando clases, encapsulación, abstracción, herencia, polimorfismo y composición; verificar sus reglas antes de conectar una interfaz gráfica.
+Modelar la Operación 13:00 con clases, encapsulamiento, abstracción, herencia, polimorfismo y composición. Las reglas viven en el modelo. Tkinter solo presenta datos y envía acciones al controlador. JSON guarda y recupera el estado.
 
-## Secuencia sugerida: seis sesiones de 90 minutos
+## Secuencia sugerida
 
-1. **Análisis del negocio:** identificar cliente, producto, pedido, pago y repartidor. Redactar reglas y recorrer estados. Ejecutar `flashfood`.
-2. **Objetos y composición:** crear clientes y productos; calcular subtotales y total. Distinguir atributo de instancia y propiedad calculada. Estudiar dataclasses y validaciones.
-3. **Encapsulación y estados:** intentar entregar un pedido sin pago; explicar la excepción. Comparar modificar un atributo con llamar a una operación de negocio.
-4. **Abstracción, herencia y polimorfismo:** comparar personas y medios de pago. Crear `PagoTransferenciaSimulada` sin cambiar `Pedido.pagar()`. Probar aprobación y rechazo.
-5. **Capas y pruebas:** inspeccionar `ServicioPedidos`, sustituir el repositorio y ejecutar unittest. Explicar por qué los imports de Qt no aparecen en el dominio.
-6. **Escritorio y eventos:** instalar el extra desktop, recorrer la ventana y conectar un formulario de cliente a `servicio.recibir()`. La vista muestra errores; el dominio decide qué se permite.
+1. **Negocio.** Recorrer productos, clientes, pedidos, pagos y repartidores. Dibujar `CREADO → PAGADO → EN_PREPARACION → EN_CAMINO → ENTREGADO` y la salida a `CANCELADO`.
+2. **Modelo.** Leer `Producto`, `Comida`, `Bebida`, `DetallePedido` y `Pedido`. Calcular subtotal, descuento VIP, despacho de hora punta y recargo por lluvia.
+3. **Estados.** Intentar entregar un pedido creado y pagar dos veces. El error sale de `Pedido`, no de la ventana.
+4. **Pagos.** Comparar `PagoTarjeta`, `PagoEfectivo` y `PagoBilletera`. Agregar una prueba con `PagoTransferencia` sin tocar las otras clases. Un rechazo no baja el stock.
+5. **Reparto y cancelación.** Asignar el mismo repartidor a dos pedidos en preparación. Cancelar uno pagado y comprobar que el stock vuelve una sola vez.
+6. **MVC y JSON.** Seguir un clic desde la vista hasta `Controlador`, `FlashFood` y `RepositorioJSON`. Cerrar y volver a abrir: el stock no se descuenta otra vez.
+7. **Escritorio.** Ejecutar `flashfood` y completar el flujo en las ocho pantallas. Los `messagebox` muestran el error y la ventana sigue abierta.
 
-## Ejercicio guiado
+## Qué mirar en la evaluación
 
-Implementar un nuevo medio de pago que acepte un indicador de aprobación, devuelva `ResultadoPago` y valide montos. Crear una prueba que pague usando ese objeto. La prueba debe demostrar que el pedido permanece recibido si el pago falla y pasa a pagado si tiene éxito, sin modificar `Pedido`.
-
-## Ejercicios de extensión
-
-- Añadir costo de despacho, decidir quién lo calcula y verificar el total.
-- Implementar un catálogo y formulario de cantidades; no duplicar reglas en la vista.
-- Crear un repositorio SQLite con reconstrucción de pedidos e historial. Diseñar primero cómo rehidratar el agregado sin saltarse validaciones.
-- Añadir cancelación y reembolso: definir transiciones y contratos antes de escribir código.
-- Añadir historial con fecha UTC y actor de cada transición.
-- Implementar una lista de pedidos con selección por identificador.
-- Identificar la condición de carrera de la asignación en memoria y proponer una solución transaccional.
-
-## Evaluación sugerida
-
-| Criterio | Ponderación |
+| Criterio | Dónde comprobarlo |
 | --- | --- |
-| Reglas e invariantes del pedido | 30% |
-| Aplicación y explicación de los fundamentos POO | 25% |
-| Separación de dominio, aplicación e interfaz | 20% |
-| Pruebas de éxito y de operaciones inválidas | 15% |
-| Documentación, commits y demostración | 10% |
+| Cuatro pilares | `Producto`, `MetodoPago` y sus subclases; `Pedido.cobrar` |
+| Reglas de negocio | `tests/test_flashfood.py` |
+| Tkinter y ttk | `src/flashfood/vista/`, menú Módulos y `Treeview` |
+| MVC | modelo sin Tkinter; vistas sin descontar stock |
+| JSON | carpeta `data/` y la prueba de recarga |
+| Validaciones | formularios del controlador y errores del modelo |
 
-Preguntas: ¿por qué no existe un setter de estado? ¿Qué cambia al añadir un pago nuevo? ¿Por qué usar composición para ítems? ¿Qué garantiza y qué no garantiza una clase congelada? ¿Dónde debe vivir una regla si la misma operación se usa desde consola y escritorio?
-
-## Transición a una aplicación real
-
-La ventana inicial evita mezclar aprendizaje de POO con un formulario complejo. Posteriormente agregar un controlador o presentador si crece la coordinación de vistas. Las operaciones de red irían en trabajadores Qt y volverían al hilo de interfaz mediante señales. Nunca bloquear el hilo principal con llamadas remotas. Antes de operar dinero real, incorporar idempotencia de pagos, transacciones, manejo de errores de proveedor y auditoría.
+Preguntas útiles: ¿por qué el estado no tiene setter? ¿Qué archivo hay que tocar para sumar un medio de pago? ¿Por qué el precio de la línea no cambia si después cambia el catálogo? ¿En qué estados se puede cancelar y cuándo vuelve el stock?

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "ped-b1dbaa94",
+    "cliente_id": "cli-1f59ccc6",
+    "es_vip": true,
+    "hora_punta": true,
+    "lluvia": true,
+    "estado": "ENTREGADO",
+    "historial": [
+      "CREADO",
+      "PAGADO",
+      "EN_PREPARACION",
+      "EN_CAMINO",
+      "ENTREGADO"
+    ],
+    "repartidor_id": "rep-marta",
+    "stock_descontado": true,
+    "stock_restituido": false,
+    "pago": {
+      "aprobado": true,
+      "referencia": "EFE-DBBB7E39",
+      "medio": "Efectivo",
+      "mensaje": "Pago en efectivo aprobado. Vuelto: $450"
+    },
+    "detalles": [
+      {
+        "producto_id": "prod-hamburguesa",
+        "nombre": "Hamburguesa",
+        "precio_unitario": 6500,
+        "cantidad": 1
+      },
+      {
+        "producto_id": "prod-papas",
+        "nombre": "Papas fritas",
+        "precio_unitario": 2500,
+        "cantidad": 2
+      },
+      {
+        "producto_id": "prod-cola",
+        "nombre": "Bebida cola",
+        "precio_unitario": 1500,
+        "cantidad": 2
+      }
+    ]
+  }
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "id": "prod-hamburguesa",
+    "tipo": "comida",
+    "nombre": "Hamburguesa",
+    "precio": 6500,
+    "stock": 24,
+    "categoria": "Sándwich"
+  },
+  {
+    "id": "prod-papas",
+    "tipo": "comida",
+    "nombre": "Papas fritas",
+    "precio": 2500,
+    "stock": 38,
+    "categoria": "Acompañamiento"
+  },
+  {
+    "id": "prod-cola",
+    "tipo": "bebida",
+    "nombre": "Bebida cola",
+    "precio": 1500,
+    "stock": 48,
+    "mililitros": 350
+  },
+  {
+    "id": "prod-jugo",
+    "tipo": "bebida",
+    "nombre": "Jugo natural",
+    "precio": 2000,
+    "stock": 20,
+    "mililitros": 400
+  }
+]
